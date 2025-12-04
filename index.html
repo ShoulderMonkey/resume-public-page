@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <title>Lorenzo Bartolini – Resume</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
             --bg-main: #111111;
@@ -119,7 +120,6 @@
             align-items: center;
             justify-content: center;
             font-size: 12px;
-            color: var(--accent);
             flex-shrink: 0;
         }
 
@@ -205,13 +205,6 @@
             font-size: 12px;
         }
 
-        .github-link {
-            font-size: 13px;
-            color: var(--text-secondary);
-            word-break: break-all;
-            margin-top: 6px;
-        }
-
         /* Responsive: on very small screens we just let it shrink horizontally */
         @media (max-width: 800px) {
             body {
@@ -240,14 +233,14 @@
             }
         }
 
-        .github-link a {
+        .contact-text a {
             color: var(--accent);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.2s ease, text-decoration-color 0.2s ease;
         }
 
-        .github-link a:hover {
+        .contact-text a:hover {
             color: #ffd491;
             /* lighter accent */
             text-decoration: underline;
@@ -276,6 +269,22 @@
                     <div class="contact-item">
                         <span class="contact-icon">📍</span>
                         <span>Milano, MI 20146</span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon"><i class="fab fa-github"></i></span>
+                        <span class="contact-text">
+                            <a href="https://github.com/ShoulderMonkey" target="_blank">
+                                github.com/ShoulderMonkey
+                            </a>
+                        </span>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon"><i class="fab fa-linkedin"></i></span>
+                        <span class="contact-text">
+                            <a href="https://www.linkedin.com/in/lorenzo-bartolini-93a310183/" target="_blank">
+                                Linkedin
+                            </a>
+                        </span>
                     </div>
                 </section>
 
@@ -360,14 +369,6 @@
                 </div>
             </section>
 
-            <section class="section-block">
-                <div class="section-title">GitHub</div>
-                <div class="github-link">
-                    <a href="https://github.com/ShoulderMonkey" target="_blank">
-                        github.com/ShoulderMonkey
-                    </a>
-                </div>
-            </section>
 
         </main>
     </div>
