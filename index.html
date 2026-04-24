@@ -1,379 +1,458 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <title>Lorenzo Bartolini – Resume</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        :root {
-            --bg-main: #111111;
-            --bg-card: #181818;
-            --bg-sidebar: #151515;
-            --text-primary: #f5f5f5;
-            --text-secondary: #cccccc;
-            --accent: #f0b35b;
-            --muted: #888888;
-            --divider: #2b2b2b;
-            --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-                Roboto, sans-serif;
-        }
+<meta charset="UTF-8" />
+<title>Lorenzo Bartolini – Resume</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+:root {
+  --bg-main: #111111;
+  --bg-card: #181818;
+  --bg-sidebar: #151515;
+  --text-primary: #f5f5f5;
+  --text-secondary: #cccccc;
+  --accent: #f0b35b;
+  --muted: #888888;
+  --divider: #2b2b2b;
+  --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-        body {
-            background: #000;
-            color: var(--text-primary);
-            font-family: var(--font-main);
-            display: flex;
-            justify-content: center;
-            padding: 40px 16px;
-        }
+body {
+  background: #000;
+  color: var(--text-primary);
+  font-family: var(--font-main);
+  display: flex;
+  justify-content: center;
+  padding: 40px 16px;
+}
 
-        /* === A4 PAGE SETUP === */
-        .page {
-            width: 210mm;
-            /* A4 width */
-            min-height: 297mm;
-            /* A4 height */
-            background: var(--bg-main);
-            border-radius: 20px;
-            box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            overflow: hidden;
-            border: 1px solid #222;
-            margin: 0 auto;
-        }
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  background: var(--bg-main);
+  border-radius: 20px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  overflow: hidden;
+  border: 1px solid #222;
+  margin: 0 auto;
+}
 
-        /* Print-specific settings */
-        @page {
-            size: A4;
-            margin: 0;
-        }
+@page {
+  size: A4;
+  margin: 0;
+}
 
-        @media print {
-            body {
-                padding: 0;
-                background: #ffffff;
-            }
+@media print {
+  body {
+    padding: 0;
+    background: #ffffff;
+  }
+  .page {
+    box-shadow: none;
+    border-radius: 0;
+    border: none;
+    width: 210mm;
+    min-height: 297mm;
+  }
+}
 
-            .page {
-                box-shadow: none;
-                border-radius: 0;
-                border: none;
-                width: 210mm;
-                min-height: 297mm;
-            }
-        }
+/* Sidebar */
+.sidebar {
+  background: var(--bg-sidebar);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--divider);
+}
 
-        /* Sidebar */
-        .sidebar {
-            background: var(--bg-sidebar);
-            padding: 32px 28px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            border-right: 1px solid var(--divider);
-        }
+.name {
+  font-size: 28px;
+  letter-spacing: 4px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  line-height: 1.2;
+}
 
-        .name {
-            font-size: 28px;
-            letter-spacing: 4px;
-            font-weight: 700;
-            margin-bottom: 40px;
-        }
+.sidebar-section {
+  margin-bottom: 32px;
+}
 
-        .sidebar-section {
-            margin-bottom: 32px;
-        }
+.sidebar h2 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--muted);
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--divider);
+}
 
-        .sidebar h2 {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--muted);
-            margin-bottom: 12px;
-        }
+.contact-item {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 9px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
-        .contact-item,
-        .skill-item {
-            font-size: 13px;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
+.contact-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  border: 1px solid var(--divider);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  flex-shrink: 0;
+  color: var(--muted);
+}
 
-        .contact-icon {
-            width: 24px;
-            height: 24px;
-            border-radius: 999px;
-            border: 1px solid var(--divider);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            flex-shrink: 0;
-        }
+.contact-text a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+.contact-text a:hover {
+  color: #ffd491;
+  text-decoration: underline;
+}
 
-        .skills-list {
-            list-style: none;
-            padding-left: 0;
-        }
+.skills-list {
+  list-style: none;
+  padding-left: 0;
+}
 
-        .skills-list li::before {
-            content: "•";
-            color: var(--accent);
-            margin-right: 6px;
-        }
+.skills-list li {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 7px;
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  line-height: 1.4;
+}
 
-        /* Main content */
-        .main {
-            padding: 32px 40px;
-            background: var(--bg-card);
-        }
+.skills-list li::before {
+  content: "•";
+  color: var(--accent);
+  flex-shrink: 0;
+  font-size: 14px;
+}
 
-        .section-title {
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--muted);
-            margin-bottom: 12px;
-        }
+.tech-badge {
+  display: inline-block;
+  font-size: 11px;
+  background: #222;
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 2px 7px;
+  color: var(--text-secondary);
+  margin: 3px 3px 0 0;
+}
 
-        .section-block {
-            margin-bottom: 28px;
-        }
+.lang-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 7px;
+}
 
-        .summary-text {
-            font-size: 14px;
-            line-height: 1.6;
-            color: var(--text-secondary);
-        }
+.lang-level {
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 500;
+}
 
-        .experience-block {
-            margin-top: 10px;
-        }
+/* Main content */
+.main {
+  padding: 32px 40px;
+  background: var(--bg-card);
+}
 
-        .job-period {
-            font-size: 11px;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 4px;
-        }
+.section-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--muted);
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--divider);
+}
 
-        .job-title {
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 2px;
-        }
+.section-block {
+  margin-bottom: 28px;
+}
 
-        .job-company {
-            font-size: 13px;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-        }
+.summary-text {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
 
-        .job-details {
-            list-style: none;
-            padding-left: 0;
-            margin-bottom: 12px;
-        }
+.summary-text strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
 
-        .job-details li {
-            font-size: 13px;
-            color: var(--text-secondary);
-            line-height: 1.5;
-            margin-bottom: 4px;
-            position: relative;
-            padding-left: 14px;
-        }
+.experience-block {
+  margin-bottom: 22px;
+}
 
-        .job-details li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            top: 0;
-            color: #ffffff;
-            font-size: 12px;
-        }
+.job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 2px;
+}
 
-        /* Responsive: on very small screens we just let it shrink horizontally */
-        @media (max-width: 800px) {
-            body {
-                padding: 16px 0;
-            }
+.job-period {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+  margin-top: 3px;
+}
 
-            .page {
-                transform: scale(0.8);
-                transform-origin: top center;
-            }
+.job-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
 
-            .page {
-                grid-template-columns: 1fr;
-            }
+.job-company {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
 
-            .name {
-                writing-mode: horizontal-tb;
-                transform: none;
-                text-align: left;
-                margin-bottom: 24px;
-            }
+.job-company .domain-tag {
+  display: inline-block;
+  font-size: 10px;
+  background: rgba(240, 179, 91, 0.12);
+  border: 1px solid rgba(240, 179, 91, 0.3);
+  color: var(--accent);
+  border-radius: 4px;
+  padding: 1px 7px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
 
-            .sidebar {
-                border-right: none;
-                border-bottom: 1px solid var(--divider);
-            }
-        }
+.job-details {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 4px;
+}
 
-        .contact-text a {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s ease, text-decoration-color 0.2s ease;
-        }
+.job-details li {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  margin-bottom: 5px;
+  position: relative;
+  padding-left: 14px;
+}
 
-        .contact-text a:hover {
-            color: #ffd491;
-            /* lighter accent */
-            text-decoration: underline;
-            text-decoration-color: #ffd491;
-        }
-    </style>
+.job-details li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent);
+  font-size: 12px;
+}
+
+.job-details li strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.edu-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+
+.edu-detail {
+  font-size: 12.5px;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 800px) {
+  body { padding: 16px 0; }
+  .page {
+    transform: scale(0.8);
+    transform-origin: top center;
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--divider);
+  }
+}
+</style>
 </head>
-
 <body>
-    <div class="page">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div>
-                <div class="name">LORENZO<br />BARTOLINI</div>
+<div class="page">
 
-                <section class="sidebar-section">
-                    <h2>Contact</h2>
-                    <div class="contact-item">
-                        <span class="contact-icon">📞</span>
-                        <span>32* *** **28</span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">✉️</span>
-                        <span>lbartolz96@gmail.com</span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">📍</span>
-                        <span>Milano, MI 20146</span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon"><i class="fab fa-github"></i></span>
-                        <span class="contact-text">
-                            <a href="https://github.com/ShoulderMonkey" target="_blank">
-                                github.com/ShoulderMonkey
-                            </a>
-                        </span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon"><i class="fab fa-linkedin"></i></span>
-                        <span class="contact-text">
-                            <a href="https://www.linkedin.com/in/lorenzo-bartolini-93a310183/" target="_blank">
-                                Linkedin
-                            </a>
-                        </span>
-                    </div>
-                </section>
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div>
+      <div class="name">LORENZO<br />BARTOLINI</div>
 
-                <section class="sidebar-section">
-                    <h2>Skills</h2>
-                    <ul class="skills-list">
-                        <li class="skill-item">Web application development</li>
-                        <li class="skill-item">CI/CD pipelines</li>
-                        <li class="skill-item">DevOps principles</li>
-                        <li class="skill-item">Security best practices</li>
-                        <li class="skill-item">API design and integration</li>
-                        <li class="skill-item">Test driven development</li>
-                        <li class="skill-item">Object-oriented programming</li>
-                    </ul>
-                </section>
-                <section class="sidebar-section">
-                    <h2>Technologies</h2>
-                    <ul class="skills-list">
-                        <li class="skill-item">NestJS enthusiast</li>
-                        <li class="skill-item">TypeORM</li>
-                        <li class="skill-item">Angular</li>
-                        <li class="skill-item">Postgres</li>
-                        <li class="skill-item">AWS (ECS Fargate, ECR, RDS, ALB, S3, Lambda, SES, Route53)</li>
-                    </ul>
-                </section>
-            </div>
-        </aside>
+      <section class="sidebar-section">
+        <h2>Contact</h2>
+        <div class="contact-item">
+          <span class="contact-icon"><i class="fas fa-phone"></i></span>
+          <span>+39 320 *** **28</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon"><i class="fas fa-envelope"></i></span>
+          <span>lbartolz96@gmail.com</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span>
+          <span>Milano, Italy</span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon"><i class="fab fa-github"></i></span>
+          <span class="contact-text">
+            <a href="https://github.com/ShoulderMonkey" target="_blank">github.com/ShoulderMonkey</a>
+          </span>
+        </div>
+        <div class="contact-item">
+          <span class="contact-icon"><i class="fab fa-linkedin"></i></span>
+          <span class="contact-text">
+            <a href="https://www.linkedin.com/in/lorenzo-bartolini-93a310183/" target="_blank">LinkedIn</a>
+          </span>
+        </div>
+      </section>
 
-        <!-- Main content -->
-        <main class="main">
-            <section class="section-block">
-                <div class="section-title">Professional Summary</div>
-                <p class="summary-text">
-                    Experienced Full Stack Developer skilled in web application development, API design, and test-driven
-                    development, with a strong foundation in CI/CD pipelines and DevOps principles. Adept at
-                    collaborating with
-                    cross-functional teams to deliver innovative solutions. Seeking to leverage expertise in a Senior
-                    Software
-                    Developer role.
-                </p>
-            </section>
+      <section class="sidebar-section">
+        <h2>Skills</h2>
+        <ul class="skills-list">
+          <li>Test-driven development (Jest)</li>
+          <li>API design &amp; integration</li>
+          <li>Async systems &amp; workers</li>
+          <li>CI/CD pipelines</li>
+          <li>DevOps principles</li>
+          <li>Database modelling</li>
+          <li>Security best practices</li>
+          <li>Technical mentoring</li>
+          <li>Object-oriented programming</li>
+        </ul>
+      </section>
 
-            <section class="section-block">
-                <div class="section-title">Experience</div>
+      <section class="sidebar-section">
+        <h2>Technologies</h2>
+        <div>
+          <span class="tech-badge">NestJS</span>
+          <span class="tech-badge">Angular</span>
+          <span class="tech-badge">TypeORM</span>
+          <span class="tech-badge">PostgreSQL</span>
+          <span class="tech-badge">Jest</span>
+          <span class="tech-badge">Docker</span>
+          <span class="tech-badge">ECS Fargate</span>
+          <span class="tech-badge">RDS</span>
+          <span class="tech-badge">ALB</span>
+          <span class="tech-badge">ECR</span>
+          <span class="tech-badge">S3</span>
+          <span class="tech-badge">Lambda</span>
+          <span class="tech-badge">SES</span>
+          <span class="tech-badge">Route53</span>
+        </div>
+      </section>
 
-                <div class="experience-block">
-                    <div class="job-period">March 2024 – December 2025</div>
-                    <div class="job-title">Full Stack Software Developer</div>
-                    <div class="job-company">Green Future Project, Milano, MI</div>
-                    <ul class="job-details">
-                        <li>Refactored the whole infrastructure to be ready for scale up.</li>
-                        <li>Collaborated with cross-functional teams to gather requirements and deliver software
-                            solutions efficiently.</li>
-                        <li>Implemented RESTful APIs to facilitate seamless data exchange between front-end and back-end
-                            systems.</li>
-                        <li>Developed asynchronous jobs and workers to handle heavy workload operations.</li>
-                        <li>Designed the database schema for handling complex business logic.</li>
-                        <li>Worked with UI/UX designer to develop a solid design system, bringing consistent and easy
-                            implementation.</li>
-                        <li>Created a modern widget using Angular Elements allowing remote control of new release
-                            versions.</li>
-                        <li>Mentored junior developers, fostering skill development and promoting best coding practices.
-                        </li>
-                        <li>Conducted comprehensive testing using Jest to identify bugs, ensuring software reliability
-                            and performance standards were met.</li>
-                        <li>Fixed AWS structure, including tailored security groups, IAM roles and all services related to the applications.</li>
-                    </ul>
-                </div>
+      <section class="sidebar-section">
+        <h2>Languages</h2>
+        <div class="lang-row">
+          <span>Italian</span>
+          <span class="lang-level">Native</span>
+        </div>
+        <div class="lang-row">
+          <span>English</span>
+          <span class="lang-level">C1</span>
+        </div>
+      </section>
 
-                <div class="experience-block">
-                    <div class="job-period">May 2019 – February 2024</div>
-                    <div class="job-title">Junior Full Stack Developer</div>
-                    <div class="job-company">DUNE Srl, Milano, MI</div>
-                    <ul class="job-details">
-                        <li>Created custom scaffolding scripts to maximize efficiency and speed in starting new
-                            projects.</li>
-                        <li>Developed numerous back office and backend applications implementing different business
-                            logic.</li>
-                        <li>Developed and maintained RESTful applications.</li>
-                        <li>Collaborated with clients to identify project requirements.</li>
-                        <li>Created AWS cloud accounts to serve applications in production and staging using ECS, RDS,
-                            ALB, ECR, S3, Route53 and many other services.</li>
-                    </ul>
-                </div>
-            </section>
-
-
-        </main>
+      <section class="sidebar-section">
+        <h2>Education</h2>
+        <div class="edu-name">Scientific High School</div>
+        <div class="edu-detail">Istituto Torricelli · Milano · 2016</div>
+      </section>
     </div>
-</body>
+  </aside>
 
+  <!-- Main content -->
+  <main class="main">
+
+    <section class="section-block">
+      <div class="section-title">Professional Summary</div>
+      <p class="summary-text">
+        Full Stack Developer with <strong>6+ years</strong> of experience building scalable web applications
+        in the green-tech and enterprise space. Deep expertise in <strong>NestJS, Angular, PostgreSQL</strong>
+        and <strong>AWS</strong> cloud infrastructure. Strong advocate for <strong>test-driven development</strong>
+        and clean, maintainable code — comfortable owning architecture decisions in small agile teams and
+        shipping end-to-end. Looking to bring this foundation to a <strong>SaaS product</strong> with
+        real engineering depth.
+      </p>
+    </section>
+
+    <section class="section-block">
+      <div class="section-title">Experience</div>
+
+      <div class="experience-block">
+        <div class="job-header">
+          <div class="job-title">Full Stack Software Developer</div>
+          <div class="job-period">March 2024 – December 2025</div>
+        </div>
+        <div class="job-company">
+          Green Future Project s.r.l. — Milano, MI
+          <span class="domain-tag">green-tech</span>
+        </div>
+        <ul class="job-details">
+          <li>Led end-to-end <strong>AWS infrastructure overhaul</strong> — redesigned security groups, IAM roles, ECS Fargate services and RDS configuration to enable production scale-up; improved environment isolation and reduced deployment friction across the team.</li>
+          <li>Built <strong>async job workers</strong> to decouple request handling from slow third-party service integrations, eliminating timeout errors and significantly improving perceived application responsiveness.</li>
+          <li>Designed and maintained the <strong>RESTful API layer</strong> between Angular frontend and NestJS backend, establishing consistent contracts and reducing integration bugs.</li>
+          <li>Co-built a <strong>shared design system</strong> with the UI/UX designer using Angular Elements, enabling remote-controlled widget versioning and consistent cross-team rollouts.</li>
+          <li>Championed <strong>TDD practices with Jest</strong> across the codebase; conducted comprehensive test suites to ensure software reliability and performance standards.</li>
+          <li>Mentored a junior developer on testing strategies, code quality standards, and best practices — fostering skill growth within a small 2–4 person dev team.</li>
+          <li>Modelled <strong>complex business logic in PostgreSQL schemas</strong>, collaborating with stakeholders to translate domain rules into reliable, maintainable data structures.</li>
+        </ul>
+      </div>
+
+      <div class="experience-block">
+        <div class="job-header">
+          <div class="job-title">Junior Full Stack Developer</div>
+          <div class="job-period">May 2019 – February 2024</div>
+        </div>
+        <div class="job-company">Trilog s.r.l. → Dune s.r.l. — Milano, MI</div>
+        <ul class="job-details">
+          <li>Developed and maintained multiple <strong>back-office and RESTful applications</strong> implementing diverse business logic across client projects.</li>
+          <li>Created custom <strong>scaffolding scripts</strong> to standardise project setup and speed up new development cycles.</li>
+          <li>Collaborated directly with clients to identify and refine project requirements.</li>
+          <li>Provisioned <strong>AWS cloud environments</strong> for production and staging using ECS, RDS, ALB, ECR, S3, Route53 and many other services.</li>
+        </ul>
+      </div>
+
+    </section>
+
+  </main>
+</div>
+</body>
 </html>
