@@ -22,9 +22,11 @@
 
 <style>
   :root {
-    --ink:        #16251e;   /* verde scuro sidebar */
-    --ink-soft:   #a3b3a7;   /* testo attenuato su fondo scuro */
+    --ink:        #171b22;   /* antracite sidebar */
+    --ink-soft:   #99a2ae;   /* testo attenuato su fondo scuro */
     --ink-line:   rgba(255,255,255,.22);
+    --accent:     #d84315;   /* rosso-arancio su fondo chiaro */
+    --accent-hi:  #ff7a45;   /* arancione acceso su fondo scuro */
     --text:       #1c1c1c;
     --text-mute:  #7d7d7d;
     --head-mute:  #9a9a9a;
@@ -36,7 +38,7 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { background: #d8dbd8; }
+  html { background: #d9dbdf; }
 
   body {
     font-family: "Inter", "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
@@ -70,19 +72,19 @@
     cursor: pointer;
     transition: background .15s, color .15s;
   }
-  .toolbar button:hover { background: rgba(22,37,30,.09); }
+  .toolbar button:hover { background: rgba(23,27,34,.09); }
   .toolbar button[aria-pressed="true"] { background: var(--ink); color: #fff; }
-  .toolbar button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-  .toolbar .download { background: var(--ink); color: #fff; border-color: var(--ink); }
-  .toolbar .download:hover { background: #24382e; }
-  .toolbar .sep { width: 1px; height: 22px; background: rgba(22,37,30,.28); margin: 0 4px; }
+  .toolbar button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .toolbar .download { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .toolbar .download:hover { background: #bf3a10; }
+  .toolbar .sep { width: 1px; height: 22px; background: rgba(23,27,34,.28); margin: 0 4px; }
   .hint {
     width: var(--page-w);
     max-width: 100%;
     margin: 0 auto 14px;
     text-align: right;
     font-size: 11px;
-    color: #5c6a60;
+    color: #626873;
   }
 
   /* --- pagina A4 ------------------------------------------------------------ */
@@ -118,7 +120,7 @@
     font-weight: 600;
     letter-spacing: .09em;
     text-transform: uppercase;
-    color: var(--ink-soft);
+    color: var(--accent-hi);
     line-height: 1.5;
   }
   .contact { margin-top: 16px; }
@@ -131,7 +133,7 @@
     font-weight: 700;
     letter-spacing: .13em;
     text-transform: uppercase;
-    color: var(--ink-soft);
+    color: var(--accent-hi);
     margin: 17px 0 8px;
   }
 
@@ -145,7 +147,7 @@
     white-space: nowrap;
   }
 
-  .strength { margin-bottom: 9px; font-size: 8.2pt; line-height: 1.45; color: #dfe6e1; }
+  .strength { margin-bottom: 9px; font-size: 8.2pt; line-height: 1.45; color: #dde1e6; }
   .strength b { color: #fff; font-weight: 700; }
 
   .langs li {
@@ -157,7 +159,7 @@
   }
   .langs .lvl { color: var(--ink-soft); }
 
-  .interests { font-size: 8.4pt; line-height: 1.55; color: #dfe6e1; }
+  .interests { font-size: 8.4pt; line-height: 1.55; color: #dde1e6; }
 
   /* --- colonna principale --------------------------------------------------- */
   .main { flex: 1; padding: 13mm 11mm 10mm 9mm; min-width: 0; }
@@ -167,7 +169,7 @@
     font-weight: 700;
     letter-spacing: .15em;
     text-transform: uppercase;
-    color: var(--head-mute);
+    color: var(--accent);
     margin-bottom: 7px;
   }
   .block { margin-bottom: 15px; }
@@ -195,15 +197,17 @@
 
   ul.bullets { margin: 3px 0 0 13px; }
   ul.bullets li { margin-bottom: 2.5px; padding-left: 2px; }
-  ul.bullets li::marker { color: #4a6b58; }
+  ul.bullets li::marker { color: var(--accent); }
 
   .edu { margin-bottom: 8px; }
   .edu-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
   .edu-name { font-weight: 700; font-size: 10pt; }
   .edu-sub { font-size: 8.6pt; }
   .edu-note { font-size: 8.1pt; color: var(--text-mute); }
-  .cert-link { color: #2f5a44; text-decoration: none; border-bottom: 1px solid #b7cbbf; }
-  .cert-link:hover { border-bottom-color: #2f5a44; }
+  .cert-link { color: var(--accent); text-decoration: none; border-bottom: 1px solid #f0c0aa; }
+  .cert-link:hover { border-bottom-color: var(--accent); }
+
+  .print-band { display: none; }
 
   /* --- commutazione lingua -------------------------------------------------- */
   html[data-lang="it"] [data-l="en"] { display: none !important; }
@@ -228,6 +232,11 @@
   @media print {
     html { background: #fff; }
     body { padding: 0; font-size: 9pt; }
+    /* micro-ritocchi di spaziatura (~5mm totali) perche' profilo + esperienze
+       chiudano dentro pagina 1 in entrambe le lingue; font e interlinea invariati */
+    .block { margin-bottom: 12px; }
+    .org { margin-bottom: 9px; }
+    ul.bullets li { margin-bottom: 2px; }
     .toolbar, .hint { display: none !important; }
     .page {
       width: 210mm;
@@ -243,7 +252,24 @@
       print-color-adjust: exact;
     }
     a { color: inherit; text-decoration: none; }
-    .org, .edu, .job { break-inside: avoid; page-break-inside: avoid; }
+    /* impaginazione a 2 pagine: mai spezzare un bullet o una voce, mai
+       lasciare un'intestazione orfana a fondo pagina */
+    ul.bullets li, .edu, .org-head, .job-head { break-inside: avoid; page-break-inside: avoid; }
+    h2, .org-head, .job-head { break-after: avoid; page-break-after: avoid; }
+    /* la Formazione apre sempre pagina 2, con lo stesso respiro in alto di pagina 1 */
+    .main > .block:last-of-type { break-before: page; page-break-before: always; padding-top: 13mm; }
+    /* la banda scura della sidebar si ripete su ogni pagina */
+    .page { background: transparent; }
+    .print-band {
+      display: block;
+      position: fixed;
+      left: 0; top: 0; bottom: 0;
+      width: var(--side-w);
+      background: var(--ink);
+      z-index: -1;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
   }
 </style>
 </head>
@@ -263,6 +289,9 @@
   <span data-l="en">In the print dialog choose “Save as PDF” and enable “Background graphics”.</span>
 </p>
 
+<!-- banda sidebar ripetuta su ogni pagina stampata (position:fixed); invisibile a schermo -->
+<div class="print-band" aria-hidden="true"></div>
+
 <div class="page">
 
   <!-- ===================== SIDEBAR ===================== -->
@@ -281,7 +310,7 @@
 
     <h2><span data-l="it">Competenze</span><span data-l="en">Skills</span></h2>
     <div class="chips">
-      <span class="chip">Test-Driven Development</span>
+      <span class="chip">Document-Driven Development</span>
       <span class="chip">API Design &amp; Integration</span>
       <span class="chip">Async Systems &amp; Workers</span>
       <span class="chip">CI/CD Pipelines</span>
@@ -293,39 +322,32 @@
       <span class="chip">Agent Design &amp; Orchestration</span>
       <span class="chip">Context Engineering</span>
       <span class="chip">LLM Evaluation &amp; Guardrails</span>
-      <span class="chip">Document-Driven Development</span>
     </div>
 
     <h2><span data-l="it">Competenze chiave</span><span data-l="en">Key strengths</span></h2>
 
     <p class="strength" data-l="it">
-      <b>Architettura e ownership tecnica</b> — esperienza nel progettare e mantenere
-      l'intero flusso applicativo, dallo schema PostgreSQL all'API layer fino al frontend
-      Angular; autonomia nelle decisioni architetturali in team agili di 2-4 persone e
-      nella traduzione di regole di dominio complesse in strutture dati affidabili.
+      <b>Architettura e ownership tecnica</b> — progettazione dell'intero flusso
+      applicativo, dallo schema PostgreSQL al frontend Angular, con autonomia
+      decisionale in team agili di 2-4 persone.
     </p>
     <p class="strength" data-l="en">
-      <b>Architecture and technical ownership</b> — experience designing and maintaining
-      the full application flow, from PostgreSQL schema to API layer to Angular frontend;
-      autonomy over architecture decisions in agile teams of 2-4 people, and in turning
-      complex domain rules into reliable data structures.
+      <b>Architecture and technical ownership</b> — designing the full application
+      flow, from PostgreSQL schema to Angular frontend, with decision-making autonomy
+      in 2-4 person agile teams.
     </p>
 
     <p class="strength" data-l="it">
-      <b>Qualità del codice e sviluppo AI-assisted</b> — approccio test-driven con Jest
-      applicato in modo sistematico sul codebase, esteso oggi al document-driven
-      development come metodo per lavorare con strumenti AI: specifiche e documentazione
-      come contesto strutturato che guida la generazione del codice e ne rende
-      verificabile l'output. Attitudine a formalizzare standard e pratiche condivise,
-      dagli script di scaffolding al mentoring di sviluppatori junior.
+      <b>Document-driven development e AI-assisted engineering</b> — specifiche,
+      contratti e documenti di stato come contesto strutturato che guida persone e
+      agenti; quality gate automatici che rendono verificabile il codice generato;
+      mentoring di sviluppatori junior.
     </p>
     <p class="strength" data-l="en">
-      <b>Code quality and AI-assisted development</b> — test-driven approach with Jest
-      applied systematically across the codebase, now extended to document-driven
-      development as a method for working with AI tooling: specs and documentation as
-      structured context that guides code generation and keeps its output verifiable.
-      Comfortable formalising shared standards and practices, from scaffolding scripts
-      to mentoring junior developers.
+      <b>Document-driven development and AI-assisted engineering</b> — specs,
+      contracts and state documents as structured context guiding both people and
+      agents; automated quality gates that keep generated code verifiable; mentoring
+      junior developers.
     </p>
 
     <h2>Tools</h2>
@@ -336,14 +358,8 @@
       <span class="chip">PostgreSQL</span>
       <span class="chip">Jest</span>
       <span class="chip">Docker</span>
-      <span class="chip">ECS Fargate</span>
-      <span class="chip">RDS</span>
-      <span class="chip">ALB</span>
-      <span class="chip">ECR</span>
-      <span class="chip">S3</span>
-      <span class="chip">Lambda</span>
-      <span class="chip">SES</span>
-      <span class="chip">Route53</span>
+      <span class="chip">AWS · ECS Fargate · RDS</span>
+      <span class="chip">S3 · Lambda · Route53</span>
       <span class="chip">Claude Code</span>
       <span class="chip">MCP</span>
       <span class="chip">LLM API Integration</span>
@@ -375,27 +391,23 @@
       <h2><span data-l="it">Profilo</span><span data-l="en">Profile</span></h2>
       <p class="profile" data-l="it">
         Full Stack Developer con oltre sei anni di esperienza nello sviluppo di
-        applicazioni web scalabili, maturata nella consulenza IT e successivamente in una
-        scale-up del settore climate-tech. Opero lungo l'intero stack — modellazione dati
-        in PostgreSQL, API in NestJS, frontend Angular e infrastruttura AWS — con
-        autonomia sulle decisioni architetturali in contesti agili di piccole dimensioni.
-        Il test-driven development è parte integrante del mio metodo di lavoro e la
-        principale garanzia di manutenibilità del codice. Applico oggi lo stesso principio
-        allo sviluppo AI-assisted, tra progettazione di agenti, context engineering e
-        valutazione sistematica degli output dei modelli, con un approccio document-driven
-        che rende il codice generato verificabile quanto quello scritto manualmente.
+        applicazioni web scalabili, tra consulenza IT e una scale-up climate-tech.
+        Opero sull'intero stack — PostgreSQL, NestJS, Angular e infrastruttura AWS —
+        con autonomia architetturale in piccoli team agili. Lavoro con un metodo
+        document-driven: specifiche, contratti e documentazione come contesto
+        strutturato che guida lo sviluppo — oggi anche quello AI-assisted, tra
+        progettazione di agenti, context engineering e quality gate automatici che
+        rendono il codice generato verificabile quanto quello scritto a mano.
       </p>
       <p class="profile" data-l="en">
-        Full Stack Developer with over six years of experience in scalable web application
-        development, gained in IT consulting and subsequently within a climate-tech
-        scale-up. I work across the full stack — data modelling in PostgreSQL, NestJS
-        APIs, Angular frontend and AWS infrastructure — with autonomy over architecture
-        decisions in small agile environments. Test-driven development is an integral part
-        of my working method and the primary guarantee of code maintainability. I now
-        apply the same principle to AI-assisted development, spanning agent design,
-        context engineering and systematic evaluation of model output, with a
-        document-driven approach that keeps generated code as verifiable as hand-written
-        code.
+        Full Stack Developer with over six years of experience building scalable web
+        applications, across IT consulting and a climate-tech scale-up. I work across
+        the full stack — PostgreSQL, NestJS, Angular and AWS infrastructure — with
+        architectural autonomy in small agile teams. I work document-driven: specs,
+        contracts and documentation as structured context that guides development —
+        today including AI-assisted development, spanning agent design, context
+        engineering and automated quality gates that keep generated code as
+        verifiable as hand-written code.
       </p>
     </section>
 
@@ -403,20 +415,19 @@
       <h2><span data-l="it">Esperienze</span><span data-l="en">Experience</span></h2>
 
       <!-- ==========================================================================
-           TODO [agent]: SEZIONE PROGETTI PERSONALI — DA COMPLETARE
-           Copre il periodo Gen 2026 – oggi (gap successivo a Green Future Project).
-           Struttura attesa: 2-3 bullet, uno per progetto rilevante.
-           Per ciascun progetto servono:
-             - nome del repo e URL
-             - descrizione in una frase (cosa fa, per chi)
-             - stack tecnologico
-             - ruolo concreto degli strumenti AI nello sviluppo
-             - demo o deploy pubblico, se esiste
-           Fonte indicata dall'utente: github.com/ShoulderMonkey (repo pubblici).
-           NB: i bullet devono contenere RISULTATI, non solo elenchi di tecnologie —
-           e' questa sezione a dare sostanza alla rivendicazione "AI-assisted
-           engineering" del titolo professionale e ai chip Agent Design /
-           Context Engineering / LLM Evaluation nella sidebar.
+           NOTA [agent]: IMPAGINAZIONE — dal ago 2026 il PDF e' su DUE pagine A4
+           (decisione utente): pagina 1 = profilo + esperienze, pagina 2 =
+           formazione (break-before: page sull'ultimo .block, banda sidebar
+           ripetuta via .print-band). Requisito: la pagina 1 deve reggere da sola
+           in screening; profilo ed esperienze non devono mai sforare in pagina 2.
+           Dopo OGNI modifica ai contenuti eseguire `bash notes/verify-pdf.sh`
+           (script locale, non versionato): 2 pagine e margine >= 4mm a fondo
+           pagina 1 in ENTRAMBE le lingue. Attenzione: Chrome headless condivide
+           localStorage tra esecuzioni e la pagina vi salva la lingua, quindi la
+           lingua va forzata riscrivendo l'init (lo script lo fa), mai con --lang.
+           I bullet dei progetti citano solo fatti documentati nei README dei repo:
+           il ruolo dell'AI e' rivendicato solo per roulette-sim, il cui README lo
+           documenta esplicitamente (sviluppo interamente via agente Claude Code).
            Duplicare sempre il markup in entrambe le lingue (data-l="it" e "en").
            ========================================================================== -->
       <article class="org">
@@ -432,9 +443,11 @@
             <span class="job-title"><span data-l="it">Sviluppo indipendente</span><span data-l="en">Independent development</span></span>
           </div>
           <ul class="bullets">
-            <li data-l="it">Sviluppo di progetti personali pubblicati su GitHub, con focus sui workflow di sviluppo AI-assisted e sull'applicazione pratica del document-driven development.</li>
-            <li data-l="en">Building personal projects published on GitHub, focused on AI-assisted development workflows and the practical application of document-driven development.</li>
-            <!-- TODO [agent]: aggiungere qui 2-3 bullet specifici per progetto. -->
+            <li data-l="it"><a class="cert-link" href="https://github.com/ShoulderMonkey/roulette-sim">roulette-sim</a> — simulatore di strategie per roulette europea: editor TypeScript in-browser (Monaco), 8 preset, simulazioni fino a 10.000 spin con P&amp;L in tempo reale e batch Monte Carlo con ruin rate e percentili. Codebase generato interamente da un agente Claude Code guidato da una specifica strutturata — contratto vincolante, continuità tra sessioni, quality gate su test, type-check e build — senza modifiche manuali al codice.</li>
+            <li data-l="en"><a class="cert-link" href="https://github.com/ShoulderMonkey/roulette-sim">roulette-sim</a> — European roulette strategy simulator: Monaco TypeScript editor, 8 presets, up to 10,000-spin simulations with real-time P&amp;L and Monte Carlo batches. Codebase generated entirely by a Claude Code agent from a structured spec — binding contract, session continuity, quality gates on tests, type-check and build — no manual code editing.</li>
+
+            <li data-l="it"><a class="cert-link" href="https://github.com/ShoulderMonkey/circuit-workout-timer">circuit-workout-timer</a> — timer multipiattaforma per allenamenti a circuito (web, Android e iOS via Capacitor): editor visuale, cue sonori e vocali sintetizzati con Web Audio e Web Speech API, storico con streak, sync opzionale Firebase e condivisione via link. Sviluppo document-driven e AI-assisted con Claude Code; React 19, TypeScript strict, Vitest, CI.</li>
+            <li data-l="en"><a class="cert-link" href="https://github.com/ShoulderMonkey/circuit-workout-timer">circuit-workout-timer</a> — cross-platform circuit-training timer (web, Android and iOS via Capacitor): visual editor, sound and voice cues synthesized with the Web Audio and Web Speech APIs, history with streaks, optional Firebase sync and link sharing. Document-driven, AI-assisted development with Claude Code; React 19, strict TypeScript, Vitest, CI.</li>
           </ul>
         </div>
       </article>
@@ -462,17 +475,11 @@
             <li data-l="it">Realizzati worker asincroni per disaccoppiare la gestione delle richieste dalle integrazioni lente con servizi di terze parti, eliminando gli errori di timeout e migliorando sensibilmente la reattività percepita dell'applicazione.</li>
             <li data-l="en">Built async job workers to decouple request handling from slow third-party integrations, eliminating timeout errors and significantly improving perceived application responsiveness.</li>
 
-            <li data-l="it">Progettato e mantenuto il layer di API REST tra frontend Angular e backend NestJS, definendo contratti coerenti e riducendo i bug di integrazione.</li>
-            <li data-l="en">Designed and maintained the RESTful API layer between Angular frontend and NestJS backend, establishing consistent contracts and reducing integration bugs.</li>
+            <li data-l="it">Progettato e mantenuto il layer di API REST tra frontend Angular e backend NestJS e co-costruito con la designer UI/UX un design system condiviso basato su Angular Elements, con versionamento remoto dei widget.</li>
+            <li data-l="en">Designed and maintained the RESTful API layer between Angular frontend and NestJS backend, and co-built a shared design system with the UI/UX designer using Angular Elements, with remote-controlled widget versioning.</li>
 
-            <li data-l="it">Co-costruito un design system condiviso con la designer UI/UX tramite Angular Elements, abilitando il versionamento remoto dei widget e rilasci coerenti tra team.</li>
-            <li data-l="en">Co-built a shared design system with the UI/UX designer using Angular Elements, enabling remote-controlled widget versioning and consistent cross-team rollouts.</li>
-
-            <li data-l="it">Introdotte e diffuse pratiche TDD con Jest sull'intero codebase, con suite di test a copertura di affidabilità e performance.</li>
-            <li data-l="en">Championed TDD practices with Jest across the codebase, with comprehensive test suites covering reliability and performance standards.</li>
-
-            <li data-l="it">Seguito un developer junior su strategie di testing, standard di qualità del codice e best practice, all'interno di un team di 2-4 persone.</li>
-            <li data-l="en">Mentored a junior developer on testing strategies, code quality standards and best practices within a 2-4 person dev team.</li>
+            <li data-l="it">Introdotte pratiche TDD con Jest sull'intero codebase e seguito un developer junior su strategie di testing e standard di qualità del codice, in un team di 2-4 persone.</li>
+            <li data-l="en">Championed TDD practices with Jest across the codebase and mentored a junior developer on testing strategies and code quality standards, within a 2-4 person dev team.</li>
 
             <li data-l="it">Modellata la logica di business in schemi PostgreSQL, traducendo con gli stakeholder le regole di dominio in strutture dati affidabili e manutenibili.</li>
             <li data-l="en">Modelled complex business logic in PostgreSQL schemas, working with stakeholders to translate domain rules into reliable, maintainable data structures.</li>
@@ -507,9 +514,6 @@
 
             <li data-l="it">Creati script di scaffolding personalizzati per standardizzare il setup dei progetti e accelerare l'avvio di nuovi sviluppi.</li>
             <li data-l="en">Created custom scaffolding scripts to standardise project setup and speed up new development cycles.</li>
-
-            <li data-l="it">Raccolti e definiti i requisiti in interlocuzione diretta con i clienti.</li>
-            <li data-l="en">Collaborated directly with clients to identify and refine project requirements.</li>
 
             <li data-l="it">Provisioning di ambienti cloud AWS di produzione e staging con ECS, RDS, ALB, ECR, S3 e Route53.</li>
             <li data-l="en">Provisioned AWS production and staging environments using ECS, RDS, ALB, ECR, S3 and Route53.</li>

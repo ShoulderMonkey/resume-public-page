@@ -17,8 +17,9 @@ https://shouldermonkey.github.io/resume-public-page/
 - **Print to PDF** — the download button opens the browser's native print dialog. The
   toolbar is hidden in `@media print`, so it never shows up in the exported file. Enable
   *Background graphics* in the print options or the sidebar comes out white.
-- **Fits one A4 page** — the layout is sized for A4 and collapses to a single column on
-  narrow screens.
+- **Two A4 pages in print** — page 1 holds profile and experience, page 2 education,
+  with the sidebar band repeated on every page. On screen the layout collapses to a
+  single column on narrow screens.
 - **Certificates** — the AI training certificates are linked from the education section
   and served from `certificates/`.
 
