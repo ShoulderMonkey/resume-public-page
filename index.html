@@ -7,6 +7,143 @@
 <meta name="description" content="Lorenzo Bartolini — Full Stack Developer. NestJS, Angular, PostgreSQL, AWS, AI-assisted engineering.">
 
 <!-- ============================================================================
+     NOTA [agent]: DATI STRUTTURATI (JSON-LD, schema.org) — copia in inglese dei
+     fatti GIA' visibili nel CV, per motori di ricerca e parser che leggono l'HTML.
+     Non viene renderizzato e non entra nel PDF.
+     Regola: qui dentro nessun contenuto che non sia anche nel testo visibile.
+     Ogni modifica a ruoli, date, competenze, progetti o formazione va riportata
+     ANCHE qui, oltre che nel markup bilingue. Dentro lo script niente entita'
+     HTML: "&" si scrive letterale.
+     ============================================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfilePage",
+      "@id": "https://shouldermonkey.github.io/resume-public-page/",
+      "url": "https://shouldermonkey.github.io/resume-public-page/",
+      "name": "Lorenzo Bartolini — Full Stack Developer",
+      "mainEntity": { "@id": "https://shouldermonkey.github.io/resume-public-page/#person" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://shouldermonkey.github.io/resume-public-page/#person",
+      "name": "Lorenzo Bartolini",
+      "jobTitle": "Full Stack Developer",
+      "description": "Full Stack Developer with over six years of experience building scalable web applications, across IT consulting and a climate-tech scale-up. I work across the full stack — PostgreSQL, NestJS, Angular and AWS infrastructure — with architectural autonomy in small agile teams. I work document-driven: specs, contracts and documentation as structured context that guides development — today including AI-assisted development, spanning agent design, context engineering and automated quality gates that keep generated code as verifiable as hand-written code.",
+      "email": "mailto:lbartolz96@gmail.com",
+      "address": { "@type": "PostalAddress", "addressLocality": "Milan", "addressCountry": "IT" },
+      "sameAs": [
+        "https://www.linkedin.com/in/lorenzo-bartolini-93a310183/",
+        "https://github.com/ShoulderMonkey"
+      ],
+      "knowsLanguage": [
+        { "@type": "Language", "name": "Italian", "alternateName": "it" },
+        { "@type": "Language", "name": "English", "alternateName": "en" }
+      ],
+      "knowsAbout": [
+        "Document-Driven Development", "API Design & Integration", "Async Systems & Workers",
+        "CI/CD Pipelines", "DevOps Principles", "Database Modelling", "Security Best Practices",
+        "OOP", "Technical Mentoring", "Agent Design & Orchestration", "Context Engineering",
+        "LLM Evaluation & Guardrails",
+        "NestJS", "Angular", "TypeORM", "PostgreSQL", "Jest", "Docker",
+        "AWS", "ECS Fargate", "RDS", "S3", "Lambda", "Route53",
+        "Claude Code", "MCP", "LLM API Integration"
+      ],
+      "alumniOf": [
+        {
+          "@type": "OrganizationRole",
+          "roleName": "Full Stack Software Developer",
+          "startDate": "2024-03",
+          "endDate": "2025-12",
+          "alumniOf": {
+            "@type": "Organization",
+            "name": "Green Future Project s.r.l.",
+            "description": "Climate-tech scale-up supporting organisations along their sustainability path through technology solutions.",
+            "address": { "@type": "PostalAddress", "addressLocality": "Milan", "addressCountry": "IT" }
+          }
+        },
+        {
+          "@type": "OrganizationRole",
+          "roleName": "Junior Full Stack Developer",
+          "startDate": "2020-05",
+          "endDate": "2024-02",
+          "alumniOf": {
+            "@type": "Organization",
+            "name": "Dune s.r.l.",
+            "description": "IT consulting firm focused on complex web applications — management systems and booking portals.",
+            "address": { "@type": "PostalAddress", "addressLocality": "Milan", "addressCountry": "IT" }
+          }
+        },
+        {
+          "@type": "OrganizationRole",
+          "roleName": "Junior Developer",
+          "startDate": "2019-05",
+          "endDate": "2020-04",
+          "alumniOf": {
+            "@type": "Organization",
+            "name": "Trilog s.r.l.",
+            "description": "IT consulting firm focused on the SAP ecosystem.",
+            "address": { "@type": "PostalAddress", "addressLocality": "Milan", "addressCountry": "IT" }
+          }
+        },
+        {
+          "@type": "EducationalOrganization",
+          "name": "Istituto Torricelli",
+          "address": { "@type": "PostalAddress", "addressLocality": "Milan", "addressCountry": "IT" }
+        }
+      ],
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Artificial Intelligence — Advanced",
+          "description": "LLMs, generative, conversational and agentic AI. 40 hours, May – Jun 2026, GOL Regione Lombardia programme.",
+          "credentialCategory": "certificate",
+          "educationalLevel": "EQF level 5",
+          "timeRequired": "PT40H",
+          "recognizedBy": { "@type": "Organization", "name": "Fondazione Consulenti per il Lavoro" },
+          "url": "https://shouldermonkey.github.io/resume-public-page/certificates/attestato-ai-avanzato-2026.pdf"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Artificial Intelligence — Foundations",
+          "description": "LLMs, generative and conversational AI. 24 hours, Apr 2026, GOL Regione Lombardia programme.",
+          "credentialCategory": "certificate",
+          "educationalLevel": "EQF level 3",
+          "timeRequired": "PT24H",
+          "recognizedBy": { "@type": "Organization", "name": "Fondazione Consulenti per il Lavoro" },
+          "url": "https://shouldermonkey.github.io/resume-public-page/certificates/attestato-ai-base-2026.pdf"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "name": "Scientific High School diploma",
+          "description": "Istituto Torricelli, Milan, 2016.",
+          "credentialCategory": "diploma",
+          "recognizedBy": { "@type": "EducationalOrganization", "name": "Istituto Torricelli" }
+        }
+      ]
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "roulette-sim",
+      "codeRepository": "https://github.com/ShoulderMonkey/roulette-sim",
+      "author": { "@id": "https://shouldermonkey.github.io/resume-public-page/#person" },
+      "description": "European roulette strategy simulator: Monaco TypeScript editor, 8 presets, up to 10,000-spin simulations with real-time P&L and Monte Carlo batches. Codebase generated entirely by a Claude Code agent from a structured spec — binding contract, session continuity, quality gates on tests, type-check and build — no manual code editing."
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "circuit-workout-timer",
+      "codeRepository": "https://github.com/ShoulderMonkey/circuit-workout-timer",
+      "author": { "@id": "https://shouldermonkey.github.io/resume-public-page/#person" },
+      "programmingLanguage": "TypeScript",
+      "description": "Cross-platform circuit-training timer (web, Android and iOS via Capacitor): visual editor, sound and voice cues synthesized with the Web Audio and Web Speech APIs, history with streaks, optional Firebase sync and link sharing. Document-driven, AI-assisted development with Claude Code; React 19, strict TypeScript, Vitest, CI."
+    }
+  ]
+}
+</script>
+
+<!-- ============================================================================
      CV LORENZO BARTOLINI — file singolo, nessuna dipendenza esterna.
      Struttura repo per GitHub Pages:
          index.html
@@ -46,6 +183,9 @@
     line-height: 1.44;
     color: var(--text);
     -webkit-font-smoothing: antialiased;
+    /* niente legature fi/fl/ff: nel PDF diventano un unico carattere (U+FB01...) e i
+       parser leggono "conﬁguration", che non corrisponde alla parola cercata */
+    font-variant-ligatures: none;
     padding: 24px 12px 48px;
   }
 
@@ -128,10 +268,13 @@
   .contact a { color: #fff; text-decoration: none; }
   .contact a:hover { text-decoration: underline; }
 
+  /* titoli di sezione: letter-spacing massimo .08em. Oltre, gli estrattori di testo
+     dei PDF leggono "E S P E R I E N Z E" e non riconoscono piu' la sezione
+     (verificato con pypdf, pdfminer e PyMuPDF: .13em e .15em si spezzano, .09em no) */
   .side h2 {
     font-size: 7.4pt;
     font-weight: 700;
-    letter-spacing: .13em;
+    letter-spacing: .08em;
     text-transform: uppercase;
     color: var(--accent-hi);
     margin: 17px 0 8px;
@@ -167,7 +310,7 @@
   .main h2 {
     font-size: 7.6pt;
     font-weight: 700;
-    letter-spacing: .15em;
+    letter-spacing: .08em;
     text-transform: uppercase;
     color: var(--accent);
     margin-bottom: 7px;

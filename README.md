@@ -49,6 +49,11 @@ html[data-lang="en"] [data-l="it"] { display: none !important; }
 So when adding content, always add both variants. Missing one means that block silently
 disappears in the other language.
 
+The `<head>` also holds a JSON-LD block (schema.org `Person`), an English copy of the
+facts already visible on the page, for search engines and parsers that read the HTML. It
+is maintained by hand: when roles, dates, skills, projects or education change, update it
+too. It never carries anything the visible CV doesn't say.
+
 Sections marked `TODO [agent]` in the source are the ones still to be filled in.
 
 ## Notes
